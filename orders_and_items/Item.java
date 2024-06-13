@@ -1,5 +1,3 @@
-// package orders_and_items;
-
 public class Item {
     // Attributes 
     private String name;

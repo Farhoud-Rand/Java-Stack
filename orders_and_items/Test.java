@@ -1,5 +1,3 @@
-// package orders_and_items;
-
 public class Test {
     public static void main(String [] args){
         Item item1 = new Item("mocha",10.0);

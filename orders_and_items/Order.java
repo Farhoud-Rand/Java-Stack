@@ -1,4 +1,3 @@
-// package orders_and_items;
 import java.util.*;
 
 public class Order {
