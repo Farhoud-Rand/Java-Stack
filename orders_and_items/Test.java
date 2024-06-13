@@ -5,7 +5,6 @@ public class Test {
         Item item3 = new Item("drip coffee",15.0);
         Item item4 = new Item("chapatino",6.0);
 
-
         Order order1 = new Order("Cindhuri");
         Order order2 = new Order("Jimmy");
         Order order3 = new Order("Noua");

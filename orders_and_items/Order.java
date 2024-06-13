@@ -22,24 +22,31 @@ public class Order {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public double getTotal() {
         return total;
     }
+
     public void setTotal(double total) {
         this.total = total;
     }
+
     public boolean isReady() {
         return ready;
     }
+
     public void setReady(boolean ready) {
         this.ready = ready;
     }
+    
     public ArrayList<Item> getItems() {
         return items;
     }
+
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
@@ -61,9 +68,7 @@ public class Order {
 
     // Function to display order informations
     public String display(){
-        String information = "Customer Name: " + this.name + "\n"; 
-        
-        
+        String information = "Customer Name: " + this.name + "\n";         
         for(Item item : items) {
             information += item.getName() + "- $" + item.getPrice() ;
         }
