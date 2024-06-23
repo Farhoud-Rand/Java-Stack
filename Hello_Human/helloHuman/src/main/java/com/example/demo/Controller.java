@@ -15,7 +15,7 @@ public class Controller {
 		} else if (lastName == null && times != null) {
 			String result = new String();
 			for (int i=0; i< times;i++) {
-				result += "Hello " + firstName + "\n";
+				result += "Hello " + firstName + " ";
 			}
 			return result;
 		} else if (firstName != null && lastName != null) {			
