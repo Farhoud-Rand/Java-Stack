@@ -1,0 +1,20 @@
+div{
+
+margin-top: 50px;
+
+}
+div h1{
+	color:pink;
+	text-align: center;
+	margin-right: 417px
+}
+ table {
+	border: 20px solid pink;
+	margin: 0 auto;
+	
+}
+table td{
+	border-bottom: 2px solid pink;
+	padding: 10px 200px 10px 0px;
+	margin-right: 20px; 
+}
