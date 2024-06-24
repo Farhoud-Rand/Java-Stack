@@ -1,0 +1,11 @@
+
+.home {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+h1{
+	color :#4e8ee7;
+	text-align: center;
+	margin-top: 200px;	
+}
