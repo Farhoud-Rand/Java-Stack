@@ -13,27 +13,38 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
+import lombok.Data;
 
 @Entity
 @Table(name="books")
+@Data
+@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Book {
 	//	Attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
-	@Size(min = 5, max = 200)
+
+	@NotBlank(message = "Title is required")
+	@Size(min = 5, max = 30, message = "Title Should be from 5 to 30 charactors")
 	private String title;
+
 	@NotNull
-	@Size(min = 5, max = 200)
+	@Size(min = 0, max = 20, message = "Description Should be up to 20 charactors")
 	private String description;
-	@NotNull
-	@Size(min = 3, max = 40)
+
+	@NotBlank(message = "Language is required")
+	@Size(min = 0, max = 20,message = "Language Should be up to 20 charactors" )
 	private String language;
-	@NotNull
-	@Min(100)
+
+	@NotBlank(message = "numberOfPages is required")
+	@Min(value = 100, message = "number Of Pages Should be up at least 100 page")
 	private Integer numberOfPages;
 
 	@Column(updatable=false)

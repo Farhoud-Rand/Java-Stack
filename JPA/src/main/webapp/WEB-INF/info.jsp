@@ -7,7 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Book Information</title>
 </head>
 <body>
 <div class="container p-4">
@@ -20,7 +20,9 @@
         <h6><strong>Language:</strong> <c:out value="${b.language}"/></h6>
         <h6><strong>Number of pages:</strong> <c:out value="${b.numberOfPages}"/></h6>
         <h6 class="mb-5"><strong>Description:</strong> <c:out value="${b.description}"/></h6>
-        <h6>Created At : <c:out value="${b.createdAt}"/> <br> </h6>
+        <h6>Created At : <c:out value="${b.createdAt}"/> <br> Last Updated: <c:out value="${b.updatedAt}"/></h6>
+        <h6><a href="books/<c:out value="${b.id}"/>/edit" class="col-1">Edit</a>|<a href="books/<c:out value="${b.id}"/>/destroy"
+                class="col-1">Delete</a></h6>
     </div>
 </body>
 </html>
