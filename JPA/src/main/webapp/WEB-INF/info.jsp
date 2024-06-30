@@ -21,7 +21,7 @@
         <h6><strong>Number of pages:</strong> <c:out value="${b.numberOfPages}"/></h6>
         <h6 class="mb-5"><strong>Description:</strong> <c:out value="${b.description}"/></h6>
         <h6>Created At : <c:out value="${b.createdAt}"/> <br> Last Updated: <c:out value="${b.updatedAt}"/></h6>
-        <h6><a href="books/<c:out value="${b.id}"/>/edit" class="col-1">Edit</a>|<a href="books/<c:out value="${b.id}"/>/destroy"
+        <h6><a href="/books/<c:out value="${b.id}"/>/edit" class="col-1">Edit</a>  |  <a href="/books/<c:out value="${b.id}"/>/destroy"
                 class="col-1">Delete</a></h6>
     </div>
 </body>

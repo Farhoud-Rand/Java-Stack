@@ -3,13 +3,14 @@ package com.cd.JPA.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.cd.JPA.models.Book;
 import com.cd.JPA.services.BookService;
@@ -23,18 +24,24 @@ public class BookApiForJSP {
 	BookService bookService;
 
 	// ******************** C (Create) from CRUD ********************
-	// Function to display page that allows us to create new show
-	@GetMapping("books/new")
-	public String create() {
-		return "new.jsp";
-	}
-	// Function to add new show to the table
-	@PostMapping("books/add")
-	public ResponseEntity<?> addBook(@Valid @RequestBody Book book) {
-		bookService.createBook(book);
-		return ResponseEntity.ok(book);
+	// Function to render the page that contains the form
+	@GetMapping("/books/new")
+	public String newBook(@ModelAttribute("book") Book book, Model model) {
+		model.addAttribute("book",book);
+		return "NewFile.jsp";
 	}
 
+	// Function to add new book to the table
+	@PostMapping("/books")
+	public String create(@Valid @ModelAttribute("book") Book book, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("book",book);
+			return "NewFile.jsp";
+		} else {
+			bookService.createBook(book);
+			return "redirect:/books";
+		}
+	}
 	// ******************** R (Read all) from CRUD ********************
 	// Get all books from our database
 	@GetMapping("/books")
@@ -53,5 +60,31 @@ public class BookApiForJSP {
 		return "info.jsp";
 	}
 
+	// ******************** U (Update) from CRUD ********************
+	// Function to render page that allows us to update book information
+	@GetMapping("/books/{id}/edit")
+	public String edit(Model model, @PathVariable long id) {
+		Book book = bookService.findBook(id);
+		model.addAttribute("book",book);
+		return "edit.jsp";
+	}
 
+	// Get books' information by its ID
+	@PutMapping("/books/{id}")
+	public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("book",book);
+			return "edit.jsp";
+		} else {
+			bookService.updateBook(book);
+			return "redirect:/books";
+		}
+	}
+
+	// ******************** D (Update) from CRUD ********************
+	@GetMapping("/books/{id}/destroy")
+	public String destroy(@PathVariable long id) {
+		bookService.deleteBook(id);
+		return "redirect:/books";
+	}
 }

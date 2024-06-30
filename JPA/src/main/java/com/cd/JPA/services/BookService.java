@@ -45,12 +45,7 @@ public class BookService {
 	}
 
 	// Updates a book information
-	public Book updateBook(long id, String title, String desc, String lang, int numOfPages) {
-		Book b = findBook(id);
-		b.setTitle(title);
-		b.setDescription(desc);
-		b.setLanguage(lang);
-		b.setNumberOfPages(numOfPages);
+	public Book updateBook(Book b) {
 		return bookRepository.save(b);
 	}
 

@@ -16,15 +16,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Builder;
-import lombok.Data;
 
 @Entity
 @Table(name="books")
-@Data
-@Builder
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class Book {
 	//	Attributes
 	@Id
@@ -43,7 +37,7 @@ public class Book {
 	@Size(min = 0, max = 20,message = "Language Should be up to 20 charactors" )
 	private String language;
 
-	@NotBlank(message = "numberOfPages is required")
+	@NotNull(message = "Number Of pages is required")
 	@Min(value = 100, message = "number Of Pages Should be up at least 100 page")
 	private Integer numberOfPages;
 
