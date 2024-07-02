@@ -12,47 +12,52 @@
 </head>
 <body>
 <div class="container mt-5">
-	<h1>Welcome!</h1>
-	<p>Join our growing community</p>
-	<h3>Register</h3>
-	<form:form action="/users/new" method="post" modelAttribute="user">
-    <div class="mb-3">
-        <form:label path="userName">User name</form:label>
-        <form:input class="form-control" path="userName"/>
-        <small class="text-danger"><form:errors path="userName"/></small>
-    </div>
-    <div class="mb-3">
-        <form:label path="email">Email</form:label>
-        <form:textarea class="form-control" path="email"/>
-        <small class="text-danger"> <form:errors path="email"/></small>
-    </div>
-    <p>
-        <form:label path="password">Password</form:label>
-        <form:input class="form-control" path="password"/>
-        <small class="text-danger"> <form:errors path="password"/></small>
-    </p>
-    <p>
-        <form:label path="confirm">Confirm PW</form:label>
-        <form:input class="form-control" path="confirm"/>
-        <small class="text-danger"> <form:errors path="confirm"/></small>
-    </p>
-    <input type="submit" value="Submit" class="btn btn-primary" />
-</form:form>
-
-	<h3>Login</h3>
-	<form:form action="/users/login" method="post" modelAttribute="newLogin">
-    <div class="mb-3">
-        <form:label path="email">Email</form:label>
-        <form:textarea class="form-control" path="email"/>
-        <small class="text-danger"> <form:errors path="email"/></small>
-    </div>
-    <p>
-        <form:label path="password">Password</form:label>
-        <form:input class="form-control" path="password"/>
-        <small class="text-danger"> <form:errors path="password"/></small>
-    </p>
-    <input type="submit" value="Submit" class="btn btn-primary" />
-</form:form>
+	<h1 class="d-flex align-items-center justify-content-center">Welcome!</h1>
+	<p class="d-flex align-items-center justify-content-center">Join our growing community</p>
+	<div class="row">
+	<div class="col-6">
+		<h3>Register</h3>
+		<form:form action="/users/new" method="post" modelAttribute="user">
+	    <div class="mb-3">
+	        <form:label path="userName">User name</form:label>
+	        <form:input class="form-control" path="userName"/>
+	        <small class="text-danger"><form:errors path="userName"/></small>
+	    </div>
+	    <div class="mb-3">
+	        <form:label path="email">Email</form:label>
+	        <form:textarea class="form-control" path="email"/>
+	        <small class="text-danger"> <form:errors path="email"/></small>
+	    </div>
+	    <p>
+	        <form:label path="password">Password</form:label>
+	        <form:input class="form-control" path="password"/>
+	        <small class="text-danger"> <form:errors path="password"/></small>
+	    </p>
+	    <p>
+	        <form:label path="confirm">Confirm PW</form:label>
+	        <form:input class="form-control" path="confirm"/>
+	        <small class="text-danger"> <form:errors path="confirm"/></small>
+	    </p>
+	    <input type="submit" value="Submit" class="btn btn-primary" />
+	</form:form>
+	</div>
+	<div class="col-6">
+		<h3>Login</h3>
+		<form:form action="/users/login" method="post" modelAttribute="newLogin">
+	    <div class="mb-3">
+	        <form:label path="email">Email</form:label>
+	        <form:textarea class="form-control" path="email"/>
+	        <small class="text-danger"> <form:errors path="email"/></small>
+	    </div>
+	    <p>
+	        <form:label path="password">Password</form:label>
+	        <form:input class="form-control" path="password"/>
+	        <small class="text-danger"> <form:errors path="password"/></small>
+	    </p>
+	    <input type="submit" value="Submit" class="btn btn-primary" />
+	</form:form>
+		</div>
+	</div>
 </div>
 </body>
 </html>
