@@ -1,6 +1,8 @@
 package com.example.BeltExample.models;
-
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,10 +11,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -43,10 +48,8 @@ public class Course {
 	@Column(columnDefinition = "Text")
 	private String description;
 
-	//	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	//	@NotNull(message = "Due Date is required!")
-	//	@Future()
-	//	private Date dueDate;
+	@NotNull
+	private LocalTime time;
 
 	@Column(updatable = false)
 	private Date createdAt;
@@ -56,19 +59,37 @@ public class Course {
 	@JoinColumn(name = "teacher_id")
 	private Instructor teacher;
 
-	//	@ManyToMany(fetch = FetchType.LAZY)
-	//	@JoinTable(name = "users_projects", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-	//	private List<Instructor> team;
+	@Transient
+	private String formattedTime;
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "course_student", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+	List<Student> students;
 
 	// ******************* Constructor *******************
 	public Course() {
-		//		this.team = new ArrayList<>();
+		this.students = new ArrayList<>();
 	}
 
 	// ******************* Setters and Getters *******************
 	public Long getId() {
 		return id;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+	public String getFormattedTime() {
+		return formattedTime;
+	}
+
+	public void setFormattedTime(String formattedTime) {
+		this.formattedTime = formattedTime;
 	}
 
 	public void setId(Long id) {
@@ -129,6 +150,14 @@ public class Course {
 
 	public void setTeacher(Instructor teacher) {
 		this.teacher = teacher;
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
 	}
 
 	//	******************* For create and update *******************

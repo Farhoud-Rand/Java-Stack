@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.BeltExample.models.Course;
 import com.example.BeltExample.models.Instructor;
+import com.example.BeltExample.models.Student;
 import com.example.BeltExample.repositories.CourseRepository;
+import com.example.BeltExample.repositories.StudentRepository;
 
 @Service
 public class CourseService {
@@ -17,6 +19,9 @@ public class CourseService {
 
 	@Autowired
 	InstructorService instructorService;
+
+	@Autowired
+	StudentRepository studentRepository;
 
 	// Function to create a new course
 	public void createCourse(Course course, long instructorId) {
@@ -40,6 +45,27 @@ public class CourseService {
 	// Function to find the course by its ID
 	public Optional<Course> findCourseById(long id) {
 		return courseRepository.findById(id);
+	}
+
+	// Function to add new student
+	public void addStudent(Student student, Course course) {
+		course.getStudents().add(student);
+		student.getJoinedCourses().add(course);
+		courseRepository.save(course);
+		studentRepository.save(student);
+	}
+
+	public List<Student> findStudentsNotInCourse(Long courseId) {
+		return studentRepository.findStudentsNotInCourse(courseId);
+	}
+
+
+	public List<Student> findAllStudentsInCourse(Long courseId) {
+		Course course = courseRepository.findById(courseId).orElse(null);
+		if (course != null) {
+			return course.getStudents();
+		}
+		return null;
 	}
 
 	//	// Function to add instructor as a team member for a course

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html>
@@ -36,9 +38,46 @@
 			<strong>Cost: </strong> $
 			<c:out value="${b.price}" />
 		</h3>
+		<h3>
+			<strong>Time: </strong>
+			<c:out value="${b.formattedTime}" />
+		</h3>
 		<h6>
 			<c:out value="${b.description}" />
-			</h3>
+		</h6>
+		<hr>
+		<h2>Course Students</h2>
+		<c:forEach var="student" items="${students}">
+					<option value="${student.id}">${student.name}-
+						${student.email}</option>
+				</c:forEach>
+		<hr>
+		<h1>New Student</h1>
+		<form:form action="/students/new" method="post"
+			modelAttribute="student">
+			<div class="mb-3">
+				<form:label path="name">Name</form:label>
+				<form:input class="form-control" path="name" />
+				<small class="text-danger"> <form:errors path="name" /></small>
+			</div>
+			<div class="mb-3">
+				<form:label path="email">Email</form:label>
+				<form:input class="form-control" path="email" />
+				<small class="text-danger"> <form:errors path="email" /></small>
+			</div>
+
+			<input type="submit" value="Add Student" class="btn btn-primary">
+		</form:form>
+
+		<h1>Add Student</h1>
+		<form action="/courses/${b.id}/addStudent" method="post">
+			<select class="form-control" name="studentId" required>
+				<c:forEach var="student" items="${otherStudents}">
+					<option value="${student.id}">${student.name}-
+						${student.email}</option>
+				</c:forEach>
+			</select> <input type="submit" value="Add" class="btn btn-primary mt-3" />
+		</form>
 	</div>
 </body>
 </html>

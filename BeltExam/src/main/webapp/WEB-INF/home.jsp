@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +22,8 @@
 		<div class="row mt-2 mb-2">
 			<h1 class="col-10">
 				Namaste,
-				<c:out value="${instructor.instructorName}" />.
+				<c:out value="${instructor.instructorName}" />
+				.
 			</h1>
 			<div class="col-2">
 				<form:form action="/instructors/logout" method="post">
@@ -40,6 +40,7 @@
 					<th class="col-3">Instructor</th>
 					<th class="col-2">Weekday</th>
 					<th class="col-2">Price</th>
+					<th class="col-2">Time</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -51,8 +52,9 @@
 								<a href="/courses/edit/${b.id}">Edit</a>
 							</c:if></td>
 						<td><c:out value="${b.teacher.instructorName}" /></td>
-						<td><c:out value="${b.day}"/></td>
+						<td><c:out value="${b.day}" /></td>
 						<td><c:out value="${b.price}" /></td>
+						<td><c:out value="${b.formattedTime}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>

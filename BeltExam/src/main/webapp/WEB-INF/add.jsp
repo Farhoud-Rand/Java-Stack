@@ -42,6 +42,12 @@
 				<small class="text-danger"><form:errors path="description" /></small>
 			</div>
 
+			<div class="mb-3">
+				<form:label path="time">Time:</form:label>
+				<form:input type="time" class="form-control" path="time" />
+				<small class="text-danger"><form:errors path="time" /></small>
+			</div>
+
 			<a class="col-2 btn btn-danger" href="/courses">Cancel</a>
 			<input type="submit" value="Submit" class="btn btn-primary">
 		</form:form>
